@@ -21,6 +21,10 @@ var possible_pieces = [
 	preload("res://scenes/yellow_piece.tscn"),
 	preload("res://scenes/orange_piece.tscn"),
 ]
+
+#game ui
+@onready var top_ui = $"../top_ui"
+
 # current pieces in scene
 var all_pieces = []
 
@@ -37,9 +41,19 @@ var final_touch = Vector2.ZERO
 var is_controlling = false
 
 # scoring variables and signals
+func scoring(score):
+	#var current_score=get_parent().get_node("top_ui").get("current_score")
+	top_ui.current_score += score
+	print("El score es: ", top_ui.current_score)
+	
 
-
+#Adrian
 # counter variables and signals
+func discounter():
+	top_ui.current_count -= 1
+	print("Quedan : ", top_ui.current_count, " movimientos")
+
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -198,6 +212,10 @@ func find_matches():
 	get_parent().get_node("destroy_timer").start()
 	
 func destroy_matched():
+	#Variables para saber si hay combo o no, pueden ir en la funcion find_matched? 
+	var pieces_matched_count = 0
+	var current_color = " "
+	
 	var was_matched = false
 	for i in width:
 		for j in height:
@@ -205,13 +223,25 @@ func destroy_matched():
 				was_matched = true
 				all_pieces[i][j].queue_free()
 				all_pieces[i][j] = null
+				pieces_matched_count += 1
+
 				
+	if pieces_matched_count == 3:
+		scoring(15*pieces_matched_count)
+	elif pieces_matched_count == 4:
+		scoring(20*pieces_matched_count)
+	elif pieces_matched_count == 5:
+		scoring(25*pieces_matched_count)
+		
+	#Esto podria servir para el conteo de turno
 	move_checked = true
 	if was_matched:
 		get_parent().get_node("collapse_timer").start()
 	else:
 		swap_back()
 
+
+		
 func collapse_columns():
 	for i in width:
 		for j in height:
