@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cruh8bbcfvyvr"]
+[gd_scene load_steps=5 format=3 uid="uid://cruh8bbcfvyvr"]
 
 [ext_resource type="Texture2D" uid="uid://brp4euwugc18f" path="res://assets/background.png" id="1_blg2x"]
 [ext_resource type="PackedScene" uid="uid://bt33j5dwxano3" path="res://scenes/top_ui.tscn" id="2_wrbvl"]
 [ext_resource type="PackedScene" uid="uid://c2b3fmv5a4iv3" path="res://scenes/bottom_ui.tscn" id="3_ttlyh"]
-[ext_resource type="Script" path="res://scripts/bottom_ui.gd" id="4_0afcf"]
 [ext_resource type="Script" path="res://scripts/grid.gd" id="4_4jr62"]
 
 [node name="Game" type="Node2D"]
@@ -20,7 +19,6 @@ offset_left = -2.0
 offset_top = 931.0
 offset_right = 574.0
 offset_bottom = 1023.0
-script = ExtResource("4_0afcf")
 
 [node name="grid" type="Node2D" parent="."]
 script = ExtResource("4_4jr62")

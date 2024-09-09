@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2b3fmv5a4iv3"]
+[gd_scene load_steps=7 format=3 uid="uid://c2b3fmv5a4iv3"]
 
 [ext_resource type="Texture2D" uid="uid://cdunkljd6up72" path="res://assets/bottom_ui.png" id="1_5vyqc"]
 [ext_resource type="Script" path="res://scripts/bottom_ui.gd" id="2_g5b8r"]
@@ -7,6 +7,16 @@
 [sub_resource type="LabelSettings" id="LabelSettings_7658y"]
 font = ExtResource("3_3vhbh")
 font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_41en6"]
+font = ExtResource("3_3vhbh")
+font_size = 27
+font_color = Color(1, 0.219608, 0.337255, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bg4q4"]
+font = ExtResource("3_3vhbh")
+font_size = 27
+font_color = Color(0.360784, 0.654902, 0.0470588, 1)
 
 [node name="bottom_ui" type="TextureRect"]
 offset_right = 40.0
@@ -38,6 +48,30 @@ offset_bottom = 70.0
 label_settings = SubResource("LabelSettings_7658y")
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="lose_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 101.0
+offset_top = 18.0
+offset_right = 441.0
+offset_bottom = 59.0
+text = "PERDISTE el nivel "
+label_settings = SubResource("LabelSettings_41en6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="win_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 109.0
+offset_top = 9.0
+offset_right = 413.0
+offset_bottom = 68.0
+text = "Ganaste el nivel "
+label_settings = SubResource("LabelSettings_bg4q4")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="next_level" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="previous_level" to="." method="_on_previous_level_pressed"]

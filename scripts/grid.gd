@@ -258,11 +258,16 @@ func start_level_timer_ui():
 		
 func change_level_state_label_ui(victoria: bool):
 	var bottom_label = get_parent().get_node("bottom_ui/Label")
-	if bottom_label:
-		if victoria:
-			bottom_label.text = str("Ganaste el nivel ", level) 
-		else:
-			bottom_label.text = str("Perdiste el nivel ", level) 
+	var win_label = get_parent().get_node("bottom_ui/win_label")
+	var lose_label = get_parent().get_node("bottom_ui/lose_label")
+	if victoria:
+		bottom_label.hide()
+		win_label.text = str("Ganaste el nivel ", level) 
+		win_label.show()
+	else:
+		bottom_label.hide()
+		lose_label.text = str("Perdiste el nivel ", level) 
+		lose_label.show()
 			
 func make_2d_array():
 	var array = []
