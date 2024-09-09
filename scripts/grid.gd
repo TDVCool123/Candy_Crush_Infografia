@@ -339,6 +339,18 @@ func swap_pieces(column, row, direction: Vector2):
 	var other_piece = all_pieces[column + direction.x][row + direction.y]
 	if first_piece == null or other_piece == null:
 		return
+		
+	var is_first_rainbow = first_piece.type == RAINBOW
+	var is_other_rainbow =  other_piece.type == RAINBOW
+	
+	if is_first_rainbow:
+		clean_color(column, row, other_piece.color)
+		move_checked = true
+	if is_other_rainbow:
+		clean_color(column + direction.x, row + direction.y, first_piece.color)
+		move_checked = true
+		
+		
 	# swap
 	state = WAIT
 	store_info(first_piece, other_piece, Vector2(column, row), direction)
@@ -384,6 +396,8 @@ func find_matches():
 		for j in height:
 			if all_pieces[i][j] != null:
 				var current_color = all_pieces[i][j].color
+				if is_t_shape(i, j):
+					replace_with_special_piece(i, j, current_color, RAINBOW)
 				# Check for horizontal matches
 				if i <= width - 5:
 					if is_match(i, j, Vector2(1, 0), 5):
@@ -396,6 +410,7 @@ func find_matches():
 					if is_match(i, j, Vector2(1, 0), 4):
 						replace_with_special_piece(i + 1, j, current_color, ROW)
 						#continue
+						
 				
 				# Check for vertical matches
 				if j <= height - 5:
@@ -440,7 +455,22 @@ func find_matches():
 					all_pieces[i][j + 1].dim()
 					
 	get_parent().get_node("destroy_timer").start()
-	
+func is_t_shape(i, j) -> bool:
+	# Horizontal T shape
+	if is_match(i, j, Vector2(1, 0), 3) and (
+		(j > 0 and all_pieces[i + 1][j - 1] != null and all_pieces[i + 1][j - 1].color == all_pieces[i][j].color) or
+		(j < height - 1 and all_pieces[i + 1][j + 1] != null and all_pieces[i + 1][j + 1].color == all_pieces[i][j].color)
+	):
+		return true
+
+	# Vertical T shape
+	if is_match(i, j, Vector2(0, 1), 3) and (
+		(i > 0 and all_pieces[i - 1][j + 1] != null and all_pieces[i - 1][j + 1].color == all_pieces[i][j].color) or
+		(i < width - 1 and all_pieces[i + 1][j + 1] != null and all_pieces[i + 1][j + 1].color == all_pieces[i][j].color)
+	):
+		return true
+
+	return false	
 	
 func is_match(i, j, direction: Vector2, length: int) -> bool:
 	#if all_pieces[i][j].type == RAINBOW:
