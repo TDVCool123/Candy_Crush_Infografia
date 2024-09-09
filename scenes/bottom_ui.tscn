@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2b3fmv5a4iv3"]
+
+[ext_resource type="Texture2D" uid="uid://cdunkljd6up72" path="res://assets/bottom_ui.png" id="1_5vyqc"]
+[ext_resource type="Script" path="res://scripts/bottom_ui.gd" id="2_g5b8r"]
+[ext_resource type="FontFile" uid="uid://b25431rxog83j" path="res://assets/fonts/Kenney Blocks.ttf" id="3_3vhbh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7658y"]
+font = ExtResource("3_3vhbh")
+font_size = 34
+
+[node name="bottom_ui" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5vyqc")
+script = ExtResource("2_g5b8r")
+
+[node name="next_level" type="Button" parent="."]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 15.0
+offset_right = 543.0
+offset_bottom = 60.0
+text = ">"
+
+[node name="previous_level" type="Button" parent="."]
+offset_left = 35.0
+offset_top = 17.0
+offset_right = 88.0
+offset_bottom = 62.0
+text = "<"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 5.0
+offset_right = 431.0
+offset_bottom = 70.0
+label_settings = SubResource("LabelSettings_7658y")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="next_level" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="previous_level" to="." method="_on_previous_level_pressed"]

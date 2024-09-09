@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://mx11su1bcs"]
+
+[ext_resource type="Texture2D" uid="uid://b4sijnbjp06m5" path="res://assets/pieces/Green Row.png" id="1_6kr3o"]
+[ext_resource type="Script" path="res://scripts/piece.gd" id="1_33gwu"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_33gwu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6kr3o")

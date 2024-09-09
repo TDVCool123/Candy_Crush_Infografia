@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://2sufh4yokmns"]
+
+[ext_resource type="Script" path="res://scripts/piece.gd" id="1_a27t8"]
+[ext_resource type="Texture2D" uid="uid://d1bhv6fqx04ed" path="res://assets/pieces/Blue Adjacent.png" id="1_rbqxa"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_a27t8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.588135, 0.549561)
+texture = ExtResource("1_rbqxa")
