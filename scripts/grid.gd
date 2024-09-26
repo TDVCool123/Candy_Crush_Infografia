@@ -126,14 +126,15 @@ func discounter():
 signal update_timer(new_time)
 
 #level settings
-var level = 1
-var goal_score = 1000
+var level = 4
+var goal_score = 4000
 var moves = 0
 var time_left = 0
 var time_passed = 0
 var current_score = 0
 var max_moves = 0
-var timer_active = false
+var timer_active = true
+var hola = 5
 
 
 
